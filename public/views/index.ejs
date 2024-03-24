@@ -1,0 +1,42 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="/backend/public/css/styles.css" type="text/css">
+    </head>
+    <body>
+        <script>
+
+        </script>
+        <hr>
+        <h1> <%= foo %> </h1>
+        <p> <%= conlog %> </p>
+        <a href="/query" target="query-iframe">atual query!!</a>
+        <hr>
+        <form action="/add" method="POST">
+            <label for="iemejs">EMAIL:</label>
+            <input type="email" name="iemejs" id="iemejs">
+            <label for="iuejs">USUARIO:</label>
+            <input type="text" name="iuejs" id="iuejs">
+            <label for="ipaejs">SENHA:</label>
+            <input type="password" name="ipaejs" id="ipaejs">
+            <input type="submit" value="INSERIR">
+        </form>
+        <hr>
+        <form action="/del" method="POST">
+            <label for="iaemejs">BUSCAR EMAIL:</label>
+            <input type="email" name="iaemejs" id="iaemejs">
+            <input type="submit" value="APAGAR ENTRADA">
+        </form>
+        <hr>
+        <form action="/upd" method="POST">
+            <label for="iupemejs">EMAIL:</label>
+            <input type="email" name="iupemejs" id="iupemejs">
+            <label for="iupuejs">USER:</label>
+            <input type="text" name="iupuejs" id="iupuejs">
+            <label for="iuppaejs">SENHA:</label>
+            <input type="password" name="iuppaejs" id="iuppaejs">
+            <input type="submit" value="UPDATE ENTRADA">
+        </form>
+        <hr>
+        <iframe src="/query" width="60%" height="30%" name="query-iframe"></iframe>
+    </body>
+</html>
