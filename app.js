@@ -70,6 +70,7 @@ app.post('/upd', async(req, res)=>{
     db.query(sqlupd, (err, data)=>{
         if(err) throw err;
         console.log("UPDATE SUCESSO!!");
+        
     })
 })
 
