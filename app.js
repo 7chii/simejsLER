@@ -2,6 +2,7 @@ let express = require('express');
 const path = require('path');
 let app = express();
 const mysql = require('mysql');
+let his = require('history');
 
 app.use(
     express.urlencoded({
@@ -20,17 +21,47 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public/views');
 
 app.use('/backend/public/css', express.static('backend/public/css'));
-//render index.ejs!
+app.use('/backend/public/images', express.static('backend/public/images'));
+
+//rotas paginas
+
+//render fp.ejs
 app.get('/',(req, res)=>{
+    res.render('fp',
+    {
+        logif: "login"
+    });
+});
+
+//render index.ejs!
+app.get('/fp',(req, res)=>{
     res.render('index', 
     {foo: 'HELL NOOOs!!!!', 
-    conlog:""});
+    conlog:"",
 });
+});
+
+//render fp.ejs
+app.get('/sp',(req, res)=>{
+    res.render('sp',
+    {nomeSp:"",
+});
+});
+
+
+
+//estilos
 app.get('/backend/public/css/styles.css',(req, res)=>
 {
     res.set('content-type', 'text/css');
     res.sendFile(path.join(__dirname, 'backend/public/css/styles.css'));
 });
+app.get('/backend/public/cogconfig.png', (req, res)=>{
+    res.set('content-type', 'image/png');
+    res.sendFile(__dirname, 'backend/public/images/cogconfig.png')
+})
+
+
 //DISPLAY entradas sql
 app.get('/query', (req, res)=>{
     const sql = "SELECT * FROM login";
@@ -38,6 +69,7 @@ app.get('/query', (req, res)=>{
         if(err) return res.json("Error");
         return res.json(data);
     })
+    
 })
 //CREATE em SQL!!!!
 app.post('/add',async(req, res)=>{
@@ -49,7 +81,9 @@ app.post('/add',async(req, res)=>{
         if(err) throw err;
         console.log("INSERIR SUCESSO!");
     })
+    res.redirect('/fp');
     res.render('index', {foo:"HELLO! "+userejs, conlog:"INSERIR SUCESSO!!!"});
+    
 })
 //DELETE de SQL!
 app.post('/del', async(req, res)=>{
@@ -59,6 +93,7 @@ app.post('/del', async(req, res)=>{
         if(err) throw err;
         console.log("DELETE SUCESSO!");
     })
+    res.redirect('/fp');
     res.render('index', {foo:"HELL YEAHH", conlog:"APAGAR SUCESSO!!!"});
 })
 //UPDATE em sql!
@@ -72,6 +107,7 @@ app.post('/upd', async(req, res)=>{
         console.log("UPDATE SUCESSO!!");
         
     })
+    res.redirect('/fp');
 })
 
 
