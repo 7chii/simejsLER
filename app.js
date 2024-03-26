@@ -34,8 +34,8 @@ app.get('/',(req, res)=>{
 });
 
 //render index.ejs!
-app.get('/fp',(req, res)=>{
-    res.render('index', 
+app.get('/sql',(req, res)=>{
+    res.render('sql', 
     {foo: 'HELL NOOOs!!!!', 
     conlog:"",
 });
@@ -81,8 +81,22 @@ app.post('/add',async(req, res)=>{
         if(err) throw err;
         console.log("INSERIR SUCESSO!");
     })
-    res.redirect('/fp');
+    res.redirect('/sql');
     res.render('index', {foo:"HELLO! "+userejs, conlog:"INSERIR SUCESSO!!!"});
+    
+})
+//CREATE MODAL LOGIN
+app.post('/addm',async(req, res)=>{
+    let emailejs = await req.body.emmod;
+    let userejs = await req.body.usmod;
+    let passejs = await req.body.pasmod;
+    var sqladd = "INSERT INTO login (email, user, passw) VALUES ('"+emailejs+"','"+userejs+"','"+passejs+"')";
+    db.query(sqladd, (err, data)=>{
+        if(err) throw err;
+        console.log("INSERIR SUCESSO!");
+    })
+    res.redirect('/');
+    //res.render('index', {foo:"HELLO! "+userejs, conlog:"INSERIR SUCESSO!!!"});
     
 })
 //DELETE de SQL!
@@ -93,7 +107,7 @@ app.post('/del', async(req, res)=>{
         if(err) throw err;
         console.log("DELETE SUCESSO!");
     })
-    res.redirect('/fp');
+    res.redirect('/sql');
     res.render('index', {foo:"HELL YEAHH", conlog:"APAGAR SUCESSO!!!"});
 })
 //UPDATE em sql!
@@ -107,7 +121,7 @@ app.post('/upd', async(req, res)=>{
         console.log("UPDATE SUCESSO!!");
         
     })
-    res.redirect('/fp');
+    res.redirect('/sql');
 })
 
 

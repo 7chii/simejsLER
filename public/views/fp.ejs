@@ -8,13 +8,64 @@
            
         </script>
         <hr>
-        <a href="/logp"><button type="button" id="botaoLogSignOut"><%= logif %></button></a>
-        <a href="/fp"><button type="button" id="botaoSQL" >
+
+        <button type="button" id="botaoLogSignOut"><%= logif %></button>
+
+        <a href="/sql"><button type="button" id="botaoSQL" >
             <img src="/backend/public/images/cogconfig.png" alt="">
         </button>
     </a>
-        <iframe src="/sp" width="100%" height="80%" name="secpage-iframe" id="secpage-iframe"></iframe>
+        <iframe src="/sp" width="100%" height="80%" name="secpageiframe" id="secpageiframe"></iframe>
+        <!--MODAL LOGIN!-->
+        <div id="mymodal" class="modal">
+            <div class="modalCont">
+                <span class="close">&times;</span>
+                <div id="right">
+                    <form action="/addm" method="POST" id="formlog">
+                        <label for="emmod">EMAIL:</label>
+                        <input type="email" name="emmod" id="emmod"><br>
+                        <hr>
+                        <label for="usmod">USUARIO:</label>
+                        <input type="text" name="usmod" id="usmod"><br>
+                        <hr>
+                        <label for="pasmod">SENHA:</label>
+                        <input type="password" name="pasmod" id="pasmod"><br>
+                        <hr>
+                        <input type="submit" value="LOGIN" id="buttlog">
+                    </form>
+                    <a href="">Esqueci minha senha!</a>
+                    <a href="">Registrar</a>
+                </div>
+                <div id="left">
+                    <img src="/backend/public/images/TransgenderPrideflag.png" alt="">
+                </div>
+            </div>
+        </div>
         <hr>
+        <script>
+            var modal = document.getElementById("mymodal");
+
+            var btnLog = document.getElementById("botaoLogSignOut");
+
+            var span = document.getElementsByClassName("close")[0];
+
+            btnLog.onclick = function(){
+                modal.style.display = "block";
+                secpageiframe.style.display = "none";
+            }
+            
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                mymodal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                modal.style.display = "none";
+                }
+            }
+        </script>
         
     </body>
 </html>
