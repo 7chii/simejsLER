@@ -2,7 +2,6 @@ let express = require('express');
 const path = require('path');
 let app = express();
 const mysql = require('mysql');
-let his = require('history');
 
 app.use(
     express.urlencoded({
@@ -20,8 +19,8 @@ const db = mysql.createConnection({
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public/views');
 
-app.use('/backend/public/css', express.static('backend/public/css'));
-app.use('/backend/public/images', express.static('backend/public/images'));
+app.use('/backend/public/css', express.static('/public/css'));
+app.use('/backend/public/images', express.static('/public/images'));
 
 //rotas paginas
 
@@ -54,11 +53,15 @@ app.get('/sp',(req, res)=>{
 app.get('/backend/public/css/styles.css',(req, res)=>
 {
     res.set('content-type', 'text/css');
-    res.sendFile(path.join(__dirname, 'backend/public/css/styles.css'));
+    res.sendFile(path.join(__dirname, 'public/css/styles.css'));
 });
-app.get('/backend/public/cogconfig.png', (req, res)=>{
+app.get('/backend/public/image/cogconfig.png', (req, res)=>{
     res.set('content-type', 'image/png');
-    res.sendFile(__dirname, 'backend/public/images/cogconfig.png')
+    res.sendFile(path.join(__dirname, 'public/image/cogconfig.png'));
+})
+app.get('/backend/public/image/TransgenderPrideflag.png', (req, res)=>{
+    res.set('content-type', 'image/png');
+    res.sendFile(path.join(__dirname, '/public/image/TransgenderPrideflag.png'));
 })
 
 
