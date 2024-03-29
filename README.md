@@ -8,3 +8,8 @@ roteando para pagina inicial! (fp) com iframe principal (sp), mostrando nome do 
 feito dia 26/03/24 (terpush!) -> botoes pra pagina "magna" de CRUD teste do DB, arrumei um pouquinho o CSS das paginas, nowhere near what I planejei though! ; modal registro ;
 ->roteei o CREATE em formulario no modal de login (no caso registro ne....)  (sem teste de usuario existente ainda), fiz o esqueleto do modal ; 
 FALTA: -> Motivacao pra fazer o resto dessa pagina de login (acho q definindo o conteudo do site, algo interessante def me faria trabalhar mais ...)
+
+feito dia 28/03/24 (quarpush) -> arquivos ejs de login e registro + basico (total no jeitinho RUIM, pra funcionar
+o basico) dinamico do site
+FALTA : escolher o que fazer do site, melhorar como o sistema checa o login e a senha(deixar mais seguro), arrumar
+DE VERDADE o dinamico do site

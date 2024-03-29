@@ -2,7 +2,8 @@ let express = require('express');
 const path = require('path');
 let app = express();
 const mysql = require('mysql');
-
+var nome = "";
+var butlog = "login";
 app.use(
     express.urlencoded({
       extended: true,
@@ -28,7 +29,7 @@ app.use('/backend/public/images', express.static('/public/images'));
 app.get('/',(req, res)=>{
     res.render('fp',
     {
-        logif: "login"
+        logif: butlog
     });
 });
 
@@ -43,10 +44,22 @@ app.get('/sql',(req, res)=>{
 //render fp.ejs
 app.get('/sp',(req, res)=>{
     res.render('sp',
-    {nomeSp:"",
+    {nomeSp:nome,
 });
 });
-
+//render registro
+app.get('/regin',(req, res)=>{
+    res.render('regin',
+    {
+    MESGLOG :""
+});
+});
+app.get('/login',(req, res)=>{
+    res.render('login',
+    {
+    MESGLOG :""
+});
+});
 
 
 //estilos
@@ -79,6 +92,7 @@ app.post('/add',async(req, res)=>{
     let emailejs = await req.body.iemejs;
     let userejs = await req.body.iuejs;
     let passejs = await req.body.ipaejs;
+    
     var sqladd = "INSERT INTO login (email, user, passw) VALUES ('"+emailejs+"','"+userejs+"','"+passejs+"')";
     db.query(sqladd, (err, data)=>{
         if(err) throw err;
@@ -88,17 +102,55 @@ app.post('/add',async(req, res)=>{
     res.render('index', {foo:"HELLO! "+userejs, conlog:"INSERIR SUCESSO!!!"});
     
 })
+//CHECK E LOG MODAL
+app.post('/logm',async(req, res)=>{
+    let emailejs = await req.body.emmod;
+    let passejs = await req.body.pasmod;
+
+    var sqltest = "SELECT * FROM login WHERE user='"+emailejs+"' AND passw='"+passejs+"';";
+    db.query(sqltest,(err, data)=>{
+        if(err) throw err;
+        if(data[0]===undefined){
+            console.log("USUARIO NAO CONSTA!!");
+            res.render('login',
+            {
+            MESGLOG :"||INFO ERRADA||"});
+        }else{
+            console.log("USUARIO CONSTA!");
+            res.render('login',
+            {
+            MESGLOG :"LOGIN SUCESSO!"});
+            nome = emailejs;
+            butlog = "logout";
+        }
+    })
+    
+})
 //CREATE MODAL LOGIN
 app.post('/addm',async(req, res)=>{
     let emailejs = await req.body.emmod;
     let userejs = await req.body.usmod;
     let passejs = await req.body.pasmod;
-    var sqladd = "INSERT INTO login (email, user, passw) VALUES ('"+emailejs+"','"+userejs+"','"+passejs+"')";
-    db.query(sqladd, (err, data)=>{
+
+    var sqltest = "SELECT * FROM login WHERE email='"+emailejs+"';";
+    db.query(sqltest,(err, data)=>{
         if(err) throw err;
-        console.log("INSERIR SUCESSO!");
+        if(data[0]===undefined){
+            console.log("EMAIL VALIDO!!");
+            var sqladd = "INSERT INTO login (email, user, passw) VALUES ('"+emailejs+"','"+userejs+"','"+passejs+"')";
+            db.query(sqladd, (err, data)=>{
+            if(err) throw err;
+               console.log("INSERIR SUCESSO!");
+        })
+        }else{
+            console.log("EMAIL INVALIDO");
+            console.log(data[0]);
+        }
     })
-    res.redirect('/');
+   res.render('login',
+   {
+   MESGLOG :""
+});
     //res.render('index', {foo:"HELLO! "+userejs, conlog:"INSERIR SUCESSO!!!"});
     
 })

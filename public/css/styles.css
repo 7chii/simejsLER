@@ -53,7 +53,7 @@ hr {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 600px;
+    width: 620px;
     height: 520px;
   }
   #left{
@@ -61,13 +61,24 @@ hr {
   }
   #right{
     float: right;
+    
   }
-  #formlog{
-    padding-top: 75%;
+  #formlog, #formlogA{
+    overflow: hidden;
+    position: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   #buttlog{
     background: transparent;
-    
+    margin-top: 5px ;
+  }
+  #buttclean{
+    background: transparent;
+    border: none;
+  }
+  #iflog{
+    padding-top: 25%;
+    height: 250px;
   }
   
   /* The Close Button */

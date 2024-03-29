@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/backend/public/css/styles.css">
+    </head>
+    <body>
+        <button onclick="history.back()" id="buttclean">←</button>
+        <form action="/addm" method="POST" id="formlog">
+            <h1>REGISTRAR</h1>
+            <h3><%= MESGLOG %></h3>
+            <label for="emmod">EMAIL:</label>
+            <input type="email" name="emmod" id="emmod"><br>
+            <hr>
+            <label for="usmod">USUARIO:</label>
+            <input type="text" name="usmod" id="usmod"><br>
+            <hr>
+            <label for="pasmod">SENHA:</label>
+            <input type="password" name="pasmod" id="pasmod"><br>
+            <input type="submit" value="REGISTRAR" id="buttlog">
+        </form>
+    </body>
+</html>

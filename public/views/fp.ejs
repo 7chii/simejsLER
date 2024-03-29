@@ -4,9 +4,6 @@
     <title>fp</title>
     </head>
     <body>
-        <script>
-           
-        </script>
         <hr>
 
         <button type="button" id="botaoLogSignOut"><%= logif %></button>
@@ -20,35 +17,24 @@
         <div id="mymodal" class="modal">
             <div class="modalCont">
                 <span class="close">&times;</span>
-                <div id="right">
-                    <form action="/addm" method="POST" id="formlog">
-                        <label for="emmod">EMAIL:</label>
-                        <input type="email" name="emmod" id="emmod"><br>
-                        <hr>
-                        <label for="usmod">USUARIO:</label>
-                        <input type="text" name="usmod" id="usmod"><br>
-                        <hr>
-                        <label for="pasmod">SENHA:</label>
-                        <input type="password" name="pasmod" id="pasmod"><br>
-                        <hr>
-                        <input type="submit" value="LOGIN" id="buttlog">
-                    </form>
-                    <a href="">Esqueci minha senha!</a>
-                    <a href="">Registrar</a>
-                </div>
                 <div id="left">
                     <img src="/backend/public/image/TransgenderPrideflag.png" alt="">
+                </div>
+                <div id="right">
+                    <iframe src="/login" frameborder="0" id="iflog" name="iflog"></iframe>
+                    <hr>
+                    <a href="" target="iflog">Esqueci minha senha!</a>
+                    <a href="/regin" target="iflog">Registrar</a>
                 </div>
             </div>
         </div>
         <hr>
         <script>
             var modal = document.getElementById("mymodal");
-
             var btnLog = document.getElementById("botaoLogSignOut");
 
             var span = document.getElementsByClassName("close")[0];
-
+            
             btnLog.onclick = function(){
                 modal.style.display = "block";
                 secpageiframe.style.display = "none";
@@ -57,6 +43,7 @@
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
                 mymodal.style.display = "none";
+                location.reload();
             }
 
             // When the user clicks anywhere outside of the modal, close it
@@ -65,6 +52,7 @@
                 modal.style.display = "none";
                 }
             }
+           
         </script>
         
     </body>
